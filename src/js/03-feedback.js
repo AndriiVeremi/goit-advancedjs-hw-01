@@ -7,7 +7,6 @@ const refs = {
 };
 
 let formData = {};
-console.log(formData)
 const STOR_KEY = 'feedback-form-state';
 
 getSaveData();
