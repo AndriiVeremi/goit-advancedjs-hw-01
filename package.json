@@ -8,7 +8,7 @@
     "build": "vite build --base=/goit-advancedjs-hw-01/",
     "preview": "vite preview"
   },
-  "devDependencies": {
+  "devDependencies": { 
     "glob": "^8.1.0",
     "vite": "^4.0.5"
   },
