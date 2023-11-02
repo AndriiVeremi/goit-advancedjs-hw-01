@@ -7,14 +7,15 @@ const refs = {
 };
 
 refs.form.addEventListener('input', throttle(handlerInput, 500));
-refs.form.addEventListener('submit', handlerSubmit)
+refs.form.addEventListener('submit', handlerSubmit);
+
+
 
 
 const lsData = localStorage.getItem('feedback-form-state');
 const saveData = JSON.parse(lsData);
 refs.input.value = saveData.email ?? '';
 refs.message.value = saveData.message ?? '';
-
 
 
 
@@ -32,18 +33,13 @@ function handlerInput(e) {
 
 
 
+
 function handlerSubmit(e) {
-    // e.preventDefault();
+  e.preventDefault();
 
-      const { email, message } = e.currentTarget.elements;
-
-      const data = {
-        email: email.value,
-        message: message.value,
-      };
-    
-    
-    
-        
+  const { email, message } = e.currentTarget.elements;
+  const data = {
+    email: email.value,
+    message: message.value,
+  };
 }
-
