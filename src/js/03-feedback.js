@@ -6,40 +6,36 @@ const refs = {
   message: document.querySelector('.js-feedback-form textarea'),
 };
 
+let formData = {};
+const STOR_KEY = 'feedback-form-state';
+
 refs.form.addEventListener('input', throttle(handlerInput, 500));
 refs.form.addEventListener('submit', handlerSubmit);
 
+getSaveData();
 
-
-
-const lsData = localStorage.getItem('feedback-form-state');
-const saveData = JSON.parse(lsData);
-refs.input.value = saveData.email ?? '';
-refs.message.value = saveData.message ?? '';
-
-
-
-
-function handlerInput(e) {
-  const { email, message } = e.currentTarget.elements;
-
-  const data = {
-    email: email.value,
-    message: message.value,
+function handlerInput() {
+  formData = {
+    email: refs.input.value,
+    message: refs.message.value,
   };
 
-  localStorage.setItem('feedback-form-state', JSON.stringify(data));
+  localStorage.setItem(STOR_KEY, JSON.stringify(formData));
 }
-
-
-
 
 function handlerSubmit(e) {
   e.preventDefault();
+  e.currentTarget.reset();
+  localStorage.removeItem(STOR_KEY);
+}
 
-  const { email, message } = e.currentTarget.elements;
-  const data = {
-    email: email.value,
-    message: message.value,
-  };
+function getSaveData() {
+  const lsData = JSON.parse(localStorage.getItem(STOR_KEY));
+
+  if (!lsData) {
+    return;
+  }
+    
+  refs.input.value = lsData.email ?? '';
+  refs.message.value = lsData.message ?? '';
 }
