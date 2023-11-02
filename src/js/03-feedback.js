@@ -7,12 +7,13 @@ const refs = {
 };
 
 let formData = {};
+console.log(formData)
 const STOR_KEY = 'feedback-form-state';
+
+getSaveData();
 
 refs.form.addEventListener('input', throttle(handlerInput, 500));
 refs.form.addEventListener('submit', handlerSubmit);
-
-getSaveData();
 
 function handlerInput() {
   formData = {
