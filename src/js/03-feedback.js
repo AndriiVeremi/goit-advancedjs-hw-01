@@ -25,8 +25,15 @@ function handlerInput() {
 
 function handlerSubmit(e) {
   e.preventDefault();
+  
+  console.log(formData);
+
+  if (refs.input.value.length !== 0 && refs.message.value.length !== 0) {
   e.currentTarget.reset();
   localStorage.removeItem(STOR_KEY);
+  } else {
+    alert('Ooo, Усі поля повинні бути заповнені');
+  }
 }
 
 function getSaveData() {
